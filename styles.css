@@ -1,0 +1,73 @@
+html {
+  background-color: #282828;
+  overflow-x: hidden;
+  -webkit-app-region: drag;
+}
+a {
+  color: white;
+  text-decoration: none;
+  -webkit-app-region: no-drag;
+}
+body {
+  -webkit-app-region: drag;
+}
+.loginButton {
+
+}
+.dl-horizontal {
+  color: white;
+}
+#title {
+  user-select: none;
+  width: 100%;
+  font-size: 30px;
+  font-family: "Microsoft Yi Baiti";
+  -webkit-app-region: drag;
+  color: rgb(231, 230, 230);
+  text-align: left;
+  position: absolute;
+  left: 120px;
+  top: -10px;
+  z-index: 17;
+}
+#artist {
+  user-select: none;
+  width: 100%;
+  font-size: 20px;
+  font-family: "Microsoft Yi Baiti";
+  color: rgb(175, 175, 175);
+  line-height: 1.2;
+  text-align: left;
+  position: absolute;
+  left: 130px;
+  top: 30px;
+  z-index: 16;
+}
+#image {
+  background-color: rgb(121, 31, 52);
+  position: absolute;
+  left: 0px;
+  top: 0px;
+  width: 100px;
+  height: 100px;
+  z-index: 3;
+}
+#bar {
+  background-color: rgb(255, 255, 255);
+  position: absolute;
+  left: 100px;
+  top: 90px;
+  width: 500px;
+  height: 10px;
+  z-index: 12;
+}
+#timestamp {
+  font-size: 16px;
+  font-family: "Microsoft Yi Baiti";
+  color: rgb(169, 169, 169);
+  text-align: left;
+  position: absolute;
+  left: 529px;
+  top: 50px;
+  z-index: 18;
+}

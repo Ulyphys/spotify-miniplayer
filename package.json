@@ -1,0 +1,21 @@
+{
+  "author": "Ajay Seedoo",
+  "name": "spotify-desktop-player",
+  "description": "A simple and clean display to show what song you're listening to on Spotify!",
+  "version": "0.0.1",
+  "dependencies": {
+    "cookie-parser": "^1.4.5",
+    "cors": "^2.8.4",
+    "express": "~4.16.0",
+    "jquery": "^3.5.1",
+    "querystring": "~0.2.0",
+    "request": "^2.83.0",
+    "spotify-web-api-node": "^4.0.0"
+  },
+  "devDependencies": {
+    "electron": "^9.0.0"
+  },
+  "scripts": {
+    "start": "electron app.js"
+  }
+}

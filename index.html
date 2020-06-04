@@ -1,0 +1,28 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Spot</title>
+    <link href="styles.css" rel="stylesheet" />
+    <script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+  </head>
+
+  <body>
+    <div class="container">
+      <div id="login">
+        <p class="loginButton"><a href="/login">Log in with Spotify</a></p>
+      </div>
+      <div id="loggedin">
+          <p id="title"></p>
+          <p id="artist"></p>
+          <p id="timestamp"></p>
+          <img id="image"></img>
+          <div id="bar"></div>
+      </div>
+    </div>
+
+    <script src="bridge.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/handlebars.js/2.0.0-alpha.1/handlebars.min.js"></script>
+
+  </body>
+</html>
