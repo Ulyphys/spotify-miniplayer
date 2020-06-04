@@ -1,24 +1,20 @@
-var express = require('express'); // Express web server framework
-var request = require('request'); // "Request" library
+var express = require('express');
+var request = require('request'); 
 var cors = require('cors');
 var querystring = require('querystring');
 var cookieParser = require('cookie-parser');
 var SpotifyWebApi = require('spotify-web-api-node');
-
-var client_id = 'b38dd3b6a66345278f8fae19e221fc67'; // Your client id
-var client_secret = '012ec4526ccb40ea98b7cc2acd65ebce'; // Your secret
-var redirect_uri = 'http://localhost:8888/callback'; // Your redirect uri
+//Change these properties to match yours using Spotify's developer panel.
+var client_id = 'client-id'; // Your client id
+var client_secret = 'client-secret'; // Your secret
+var redirect_uri = 'redirect-uri'; // Your redirect uri
 var access_token;
 var song_title;
 var song_artist;
 var song_image;
 var authOptions;
 var spotifyApi = new SpotifyWebApi();
-/**
- * Generates a random string containing numbers and letters
- * @param  {number} length The length of the string
- * @return {string} The generated string
- */
+
 var generateRandomString = function(length) {
   var text = '';
   var possible = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
@@ -87,7 +83,7 @@ server.get('/callback', function(req, res) {
       if (!error && response.statusCode === 200) {
 
         access_token = body.access_token;
-
+        //setting up the spotifyApi here for use, the access token gets accesed by bridge later.
         spotifyApi.setAccessToken(access_token);
 
         spotifyApi.getMyCurrentPlayingTrack().then(
@@ -116,9 +112,8 @@ server.get('/callback', function(req, res) {
           json: true
         };
 
-        // use the access token to access the Spotify Web API
         request.get(options, function(error, response, body) {
-          console.log(body);
+          console.log("sucess!");
         });
       } else {
         res.redirect('/#' +
@@ -134,7 +129,8 @@ server.get('/callback', function(req, res) {
 console.log('Listening on 8888');
 server.listen(8888);
 
-// Electron
+// Electron, this basically hosts the window for the program (client). Everything before dealt with the server
+// and ran using express
 const electron = require('electron');
 const { app, BrowserWindow } = require('electron')
 
@@ -153,7 +149,7 @@ function createWindow () {
     }
   })
 
-  // and load the index.html of the app.
+  // and load the index.html of the app. (change this to wherever the server is hosted
   win.loadURL('http://localhost:8888/')
 
   const globalShortcut = electron.globalShortcut
@@ -170,27 +166,16 @@ function createWindow () {
   // win.webContents.openDevTools()
 }
 
-// This method will be called when Electron has finished
-// initialization and is ready to create browser windows.
-// Some APIs can only be used after this event occurs.
 app.whenReady().then(createWindow)
 
-// Quit when all windows are closed.
 app.on('window-all-closed', () => {
-  // On macOS it is common for applications and their menu bar
-  // to stay active until the user quits explicitly with Cmd + Q
   if (process.platform !== 'darwin') {
     app.quit()
   }
 })
 
 app.on('activate', () => {
-  // On macOS it's common to re-create a window in the app when the
-  // dock icon is clicked and there are no other windows open.
   if (BrowserWindow.getAllWindows().length === 0) {
     createWindow()
   }
 })
-
-// In this file you can include the rest of your app's specific main process
-// code. You can also put them in separate files and require them here.
